@@ -17,3 +17,5 @@ $(EXECUTABLE): $(OBJECTS)
 	$(CXX) $(CXXFLAGS) $(OBJECTS) -o $(EXECUTABLE)
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $*.cpp
+clean:
+	rm *.exe *.o
