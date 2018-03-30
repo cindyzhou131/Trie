@@ -8,11 +8,13 @@ const long STRING_LIM = 100;
 
 
 int main(int argc, char *argv[]){
-  int num_users = 0;
-  Trie dicitionary;
-  if(argc == 2){
-    num_users = atoi(argv[1]);
-  }
+//   int num_users = 0;
+//   if(argc == 2){
+//     num_users = atoi(argv[1]);
+//   }
+  
+    Trie dicitionary;
+
 
   char word[STRING_LIM]; //c_str() does weird stuff to the null character
   std::string request = "";
@@ -41,6 +43,9 @@ int main(int argc, char *argv[]){
       std::cin >> request;
       strncpy(word, request.c_str(),STRING_LIM);
       dicitionary.delete_value(word);
+    }else if(request == "quit" || request == "q"){
+      std::cout << "Exiting..." << std::endl;
+      return 0;
     }
 
   }
