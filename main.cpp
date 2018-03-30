@@ -15,7 +15,8 @@ int main(int argc, char *argv[]){
   
     Trie dicitionary;
 
-
+  std::ifstream ifs;
+  
   char word[STRING_LIM]; //c_str() does weird stuff to the null character
   std::string request = "";
   while(true){
@@ -25,6 +26,13 @@ int main(int argc, char *argv[]){
     if(request == "insert" || request == "i"){
       std::cout << "insert: ";
       std::cin >> request;
+//       if(ifs.open(request.c_str(), std::ifstream::in) == 
+//       while(ifs.getline(word, STRING_LIM)){
+//         strncpy(word, request.c_str(),STRING_LIM);
+//          dicitionary.insert(word);
+//         std::cout << "new value added: " << word << std::endl;
+//        }
+      
       strncpy(word, request.c_str(),STRING_LIM);
       dicitionary.insert(word);
       std::cout << "new value added: " << word << std::endl;
