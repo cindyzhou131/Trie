@@ -13,16 +13,18 @@ public:
     char value;
     bool word = false;
     std::unordered_map<char ,node *> next_level;
-    void search_helper(const char * value, std::string &prefix);
+    node * search_helper(const char * value, std::string &prefix);
     void insert_helper(const char * value);
     void print_helper(std::string & prefix);
     void print_string(std::string & prefix);
     bool delete_helper(const char * value);
+    const char * definition = nullptr;
 
 
   };
-
-  void search(const char * value);
+    void insert_definition(const char * value, const char * def);
+ 
+  node * search(const char * value);
   void insert(const char * value);
   void print();
   void delete_all();

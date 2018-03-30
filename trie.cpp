@@ -2,15 +2,25 @@
 #include <cstring>
 #include "trie.h"
 
+void Trie::insert_definition(const char * value, const char * def){
+  auto node = search(value);
+  if(node == nullptr){
+  std::cout << "Word is not in the dictionary insert before defining" << std::endl;
+  }
+  if(node->definition != nullptr){
+  std::cout << "Redefining" << std::endl;
+  }
+  node->definition = def;
+}
 
-void Trie::search(const char * value){
+Trie::node * Trie::search(const char * value){
   char f_char = value[0];
   if(f_char ==  '\0'){
-    return;
+    return nullptr;
   }
   if(root.find(f_char) == root.end()){
     std::cout<< "None";
-    return;
+    return nullptr;
   }
   std::string prefix;
   prefix += value[0];
@@ -19,7 +29,7 @@ void Trie::search(const char * value){
 }
 
 
-void Trie::node::search_helper(const char * value, std::string &prefix){
+Trie::node * Trie::node::search_helper(const char * value, std::string &prefix){
   char f_char = value[0];
   prefix += f_char;
 
@@ -28,7 +38,7 @@ void Trie::node::search_helper(const char * value, std::string &prefix){
     for(auto entry : next_level){
       entry.second->print_string(prefix);
     }
-    return;
+    return nullptr;
   }else if(f_char == '\0'){
     if(word){
       std::cout << prefix << std::endl;
@@ -38,9 +48,9 @@ void Trie::node::search_helper(const char * value, std::string &prefix){
   }
   if(next_level.find(f_char) == next_level.end()){
     std::cout << prefix;
-    return;
+    return nullptr;
   }
-  next_level[f_char]->search_helper(++value, prefix);
+  return next_level[f_char]->search_helper(++value, prefix);
 
 }
 
@@ -159,7 +169,7 @@ void Trie::delete_all(){
     delete entry.second;
   }
 }
-
+      
 Trie::node::~node(){
   for(auto entry : next_level){
     delete entry.second;

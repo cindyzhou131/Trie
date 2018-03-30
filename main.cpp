@@ -19,6 +19,7 @@ int main(int argc, char *argv[]){
   
   char word[STRING_LIM]; //c_str() does weird stuff to the null character
   std::string request = "";
+  std::string data = "";
   while(true){
     std::cout << "Enter Command: ";
     std::cin >> request;
@@ -54,7 +55,12 @@ int main(int argc, char *argv[]){
     }else if(request == "quit" || request == "q"){
       std::cout << "Exiting..." << std::endl;
       return 0;
+    }else if(request == "define" || request == "d"){
+      std::cin >> request;
+      std::cin >> data;
+      strncpy(word, request.c_str(),STRING_LIM);
+      dicitionary.insert_definition(word, data.c_str());
+    
     }
-
   }
 }
